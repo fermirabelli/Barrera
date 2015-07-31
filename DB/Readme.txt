@@ -1,0 +1,1 @@
+En esta carpeta se almacenan los archivos con el codigo SQL para crear los objetos de la base de datos 

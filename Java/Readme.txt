@@ -1,0 +1,1 @@
+En esta carpeta se almacenan los archivos con el codigo de la aplicacion Java para correr en la raspi y poder consultar la base de datos 
