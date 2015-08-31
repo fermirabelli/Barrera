@@ -1,0 +1,13 @@
+Para que la aplicación de java funcione correctamente deben guardarse ambas clases en una misma carpeta, y además ambas
+requieren un archivo '.jar' cada una. Estos archivos se pueden descargar fácilmente de internet.
+
+
+Los nombres de los mismos son:
+
+mysql-connector-java-5.0.8-bin.jar  -->  utilizado para la clase conectar.java (permite la conexión con mysql)
+RXTXcomm.jar   -->   utilizado para la clase conectar.java (permite la conexion del puerto serie)
+además, se debe disponer de un archivo .dll para la conexión del puerto serie llamado rxtxSerial.dll el cual viene en la misma
+descarga del archivo RXTXcomm.jar
+
+Una vez descargados estos archivos se deben colocar en la carpeta default de java/jdk/... de acuerdo a si es .jar o .dll
+la cual varía de acuerdo al sistema operativo.. por lo gral en windows se encuentra en C:/archivos de programa/Java/jdk/..
