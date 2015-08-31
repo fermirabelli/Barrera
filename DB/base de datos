@@ -1,0 +1,27 @@
+La base de datos que utiliza este proyecto se llama "mecatronica".
+
+Las tablas de dicha BBDD son "persona", "auto" y "persona_auto".
+
+A continuación se encuentran las columnas que componen cada tabla...
+
+Tabla persona:
+	id_persona, PK
+	persona_nombre,
+	persona_apellido,
+	persona_documento,
+	persona_codigoext1,
+	persona_codigoext2,
+	persona_codigoint;
+
+Tabla auto:
+	id_auto, PK
+	auto_patente,
+	auto_marca,
+	auto_color;
+
+Tabla persona_auto:
+	id_persona, PK --> clave foránea con referencia a id_persona de la tabla persona
+	id_auto; PK --> clave foránea con referencia a id_auto de la tabla auto
+
+Los códigos SQL no son difíciles pero aún así también se puede hacer todo mediante un software de gestión de base de datos.. 
+para este proyecto se utilizó el gestor phpmyadmin.
