@@ -1,0 +1,33 @@
+char respuesta;
+int i=0;
+char *str;
+
+/*
+Este código es para hacer pruebas en la recepción y envío de datos entre Arduino y aplicación java por puerto serie..
+Envía un String con un código el cual representa el código interno de la tarjeta electrónica que ingresa un cliente... la cual es al mismo tiempo primary key en la tabla
+"persona" de la base de datos..
+La aplicación java debe devolver un '1' si el cliente se encuentra en la base de datos... si recibe un '1' devuelve "recibi un uno." para que la aplicación java sepa que
+el pulso se ha recibido con éxito. Sino recibe un '1' no hace nada.
+*/
+
+void setup() {
+  Serial.begin(9600);
+  //pinMode(led_rojo, OUTPUT);
+  //pinMode(led_verde, OUTPUT);
+  //digitalWrite(led_rojo, LOW);
+  //digitalWrite(led_verde, LOW);
+}
+
+void loop() {
+  //Envía por puerto serie el código interno que usa la base de datos como primary key... esto lo recibe la aplicación java
+  Serial.write("5000E4823701");
+  delay(5000);
+  
+  //La aplicación java debe devolver un 1 o un 0 para que el arduino envíe o no el pulso a la barrera y así abrirse o seguir cerrada.
+  //Si recibe datos por puerto serie.. los lee y pregunta si es igual a '1'.. si es así devuelve un "recibi uno" por puerto serie para corroborar el pulso recibido.
+  if(Serial.available()){
+    if(Serial.read()=='1')
+      Serial.write("valid access");
+      delay(5000);
+  }
+}
