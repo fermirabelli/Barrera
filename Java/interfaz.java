@@ -414,6 +414,10 @@ Connection cn = cc.conexion();
             try {
                 if(input.available()!=0){
                     System.out.print("Nuevo ingreso: ");
+                    /*
+                    Aqui mismo toma caracter por caracter, byte por byte hasta 12 (de 0 a 11) ya que esa es la 
+                    cantidad de caracteres que tiene cada tarjeta electronica guardada en si.
+                    */
                     for(int i=0; i<=11; i++){
                         try{
                             //if(i==0) Thread.sleep(2000);
