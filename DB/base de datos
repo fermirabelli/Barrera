@@ -22,6 +22,10 @@ Tabla auto:
 Tabla persona_auto:
 	id_persona, PK --> clave foránea con referencia a id_persona de la tabla persona
 	id_auto; PK --> clave foránea con referencia a id_auto de la tabla auto
+	
+ES MUY IMPORTANTE QUE LA COLUMNDA persona_codigoint GUARDE CADENA DE 12 CARACTERES... SI NO ES ASI HABRÁ PROBLEMAS DE
+OBTENCIÓN DE CADENAS EN LA APLICACIÓN DE JAVA.. PARA APRECIAR MEJOR LO DICHO, OBSERVAR EL CODIGO EN LA CARPETA JAVA
+EN LA CLASE INTERFAZ.JAVA EN EL METODO "recibirDatos()"
 
 Los códigos SQL no son difíciles pero aún así también se puede hacer todo mediante un software de gestión de base de datos.. 
 para este proyecto se utilizó el gestor phpmyadmin.
