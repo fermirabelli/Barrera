@@ -1,31 +1,39 @@
 La base de datos que utiliza este proyecto se llama "mecatronica".
 
-Las tablas de dicha BBDD son "persona", "auto" y "persona_auto".
+Las tablas de dicha BBDD son "persona", "auto", "persona_auto", "ingreso", "salida".
 
 A continuación se encuentran las columnas que componen cada tabla...
 
 Tabla persona:
-	id_persona, PK
-	persona_nombre,
-	persona_apellido,
-	persona_documento,
-	persona_codigoext1,
-	persona_codigoext2,
-	persona_codigoint;
+	persona_nombre (varchar),
+	persona_apellido (varchar),
+	persona_documento (varchar),
+	persona_codigoext1 (varchar),
+	persona_codigoext2 (varchar),
+	persona_codigoint (varchar); PK
 
 Tabla auto:
-	id_auto, PK
-	auto_patente,
-	auto_marca,
-	auto_color;
+	id_auto (int), PK
+	auto_patente (varchar),
+	auto_marca (varchar),
+	auto_color (varchar);
 
 Tabla persona_auto:
-	id_persona, PK --> clave foránea con referencia a id_persona de la tabla persona
-	id_auto; PK --> clave foránea con referencia a id_auto de la tabla auto
+	id_persona (int), PK --> clave foránea con referencia a id_persona de la tabla persona
+	id_auto (int); PK --> clave foránea con referencia a id_auto de la tabla auto
 	
-ES MUY IMPORTANTE QUE LA COLUMNDA persona_codigoint GUARDE CADENA DE 12 CARACTERES... SI NO ES ASI HABRÁ PROBLEMAS DE
-OBTENCIÓN DE CADENAS EN LA APLICACIÓN DE JAVA.. PARA APRECIAR MEJOR LO DICHO, OBSERVAR EL CODIGO EN LA CARPETA JAVA
-EN LA CLASE INTERFAZ.JAVA EN EL METODO "recibirDatos()"
+Tabla ingreso:
+	id_ingreso, PK
+	ingreso_fecha (varchar),
+	ingreso_horario (TIME),
+	persona_codigoint (varchar); PK --> clave foránea a persona_codigoint de la tabla persona
+	
+Tabla salida:
+	id_salida; PK
+	salida_fecha (varchar),
+	salida_horario (TIME),
+	persona_codigoint (varchar); PK --> clave foránea a persona_codigoint de la tabla persona
+	
 
 Los códigos SQL no son difíciles pero aún así también se puede hacer todo mediante un software de gestión de base de datos.. 
 para este proyecto se utilizó el gestor phpmyadmin.
