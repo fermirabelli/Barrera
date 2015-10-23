@@ -1,33 +1,79 @@
-char respuesta;
-int i=0;
-char *str;
-
 /*
 Este código es para hacer pruebas en la recepción y envío de datos entre Arduino y aplicación java por puerto serie..
 Envía un String con un código el cual representa el código interno de la tarjeta electrónica que ingresa un cliente... la cual es al mismo tiempo primary key en la tabla
 "persona" de la base de datos..
-La aplicación java debe devolver un '1' si el cliente se encuentra en la base de datos... si recibe un '1' devuelve "recibi un uno." para que la aplicación java sepa que
-el pulso se ha recibido con éxito. Sino recibe un '1' no hace nada.
+La aplicación java debe devolver un '1' si el cliente se encuentra en la base de datos... si recibe un '1' el arduino enciende por un segundo el led que se encuentra en el pin 13 de su 
+hardware.. sino recibe el '1' no hace nada
 */
 
 void setup() {
   Serial.begin(9600);
-  //pinMode(led_rojo, OUTPUT);
-  //pinMode(led_verde, OUTPUT);
-  //digitalWrite(led_rojo, LOW);
-  //digitalWrite(led_verde, LOW);
+  pinMode(13, OUTPUT);
+  //give java aplication a moment to execute
+  delay(10000);
 }
 
 void loop() {
-  //Envía por puerto serie el código interno que usa la base de datos como primary key... esto lo recibe la aplicación java
-  Serial.write("5000E4823701");
-  delay(5000);
+  /*
+  Envía por puerto serie el código interno que usa la base de datos como primary key... esto lo recibe la aplicación java.. importante agregar la z al final del codigo,
+  de otra manera la aplicacion java jamas sabria cuando termina el string que encierra el codigo.. de igual manera son importantes la coma ',' y la 's' o la 'i'. Estos
+  chars indican si el registro esta saliendo del estacionamiento o entrando.
+  El salto de linea '\n' es tambien muy importante porque por alguna razon, la conexion a traves de pines de rx a tx y viceversa, no termina de captar datos hasta que 
+  detecta un salto de linea... sino se encuentra ese '\n' la aplicacion no funcionara..
+  */
   
-  //La aplicación java debe devolver un 1 o un 0 para que el arduino envíe o no el pulso a la barrera y así abrirse o seguir cerrada.
-  //Si recibe datos por puerto serie.. los lee y pregunta si es igual a '1'.. si es así devuelve un "recibi uno" por puerto serie para corroborar el pulso recibido.
+  Serial.write("5000E4823701,sz\n");
+  //en las siguientes condiciones, arduino pregunta si recibe datos por puerto serie.. si es asi, pregunta si es un '1'.. si es asi, enciende el led por un segundo..
   if(Serial.available()){
-    if(Serial.read()=='1')
-      Serial.write("valid access");
-      delay(5000);
+    if(Serial.read()=='1'){
+      digitalWrite(13, HIGH);
+      delay(1000);
+      digitalWrite(13, LOW);
+      delay(1000);
+    }
   }
+  delay(6000);
+  //Este procedimiento se repite para cuatro codigos de tarjeta diferentes adicionales para observar el tiempo de respuesta..
+  
+  Serial.write("50018EEE81B0,iz\n");
+  if(Serial.available()){
+    if(Serial.read()=='1'){
+      digitalWrite(13, HIGH);
+      delay(1000);
+      digitalWrite(13, LOW);
+      delay(1000);
+    }
+  }
+  delay(6000);
+  
+  Serial.write("5001897F47E0,sz\n");
+  if(Serial.available()){
+    if(Serial.read()=='1'){
+      digitalWrite(13, HIGH);
+      delay(1000);
+      digitalWrite(13, LOW);
+      delay(1000);
+    }
+  }
+  delay(6000);
+  Serial.write("5001865532B0,iz\n");
+  if(Serial.available()){
+    if(Serial.read()=='1'){
+      digitalWrite(13, HIGH);
+      delay(1000);
+      digitalWrite(13, LOW);
+      delay(1000);
+    }
+  }
+  delay(6000);
+  Serial.write("5001851501C0,sz\n");
+  if(Serial.available()){
+    if(Serial.read()=='1'){
+      digitalWrite(13, HIGH);
+      delay(1000);
+      digitalWrite(13, LOW);
+      delay(1000);
+    }
+  }
+  delay(6000);
 }
